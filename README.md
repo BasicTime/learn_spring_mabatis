@@ -1,2 +1,2 @@
-# learn_spring_mabatis
-learn_spring_mabatis
+# learn_spring_mybatis
+learn_spring_mybatis

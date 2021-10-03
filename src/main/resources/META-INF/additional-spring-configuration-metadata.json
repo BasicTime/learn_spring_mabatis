@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "log4j.logger.org.mybatis.generator",
+      "type": "java.lang.String",
+      "description": "Description for log4j.logger.org.mybatis.generator."
+  }
+] }
