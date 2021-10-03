@@ -92,7 +92,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.1.0</version>
             </plugin>
             <!-- 通过插件的方式运行generator，generator的运行有多种方式，包括命令行、java程序、maven插件的方式
             通过maven插件的方式运行如下：
