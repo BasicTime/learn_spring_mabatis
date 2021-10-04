@@ -29,11 +29,13 @@
             <version>2.2.0</version>
         </dependency>
         <!--关于mabatis的generator的引入，参考https://github.com/mybatis/generator/releases/tag/mybatis-generator-1.4.0-->
-<!--        <dependency>
+        <!--网上都是通过这种方式引入core，没有见到下main那种方式引入，可能是版本的关系-->
+        <!--http://mybatis.org/generator/-->
+        <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
             <version>1.4.0</version>
-        </dependency>-->
+        </dependency>
 
         <!--<dependency>
             <groupId>org.mybatis.generator</groupId>
@@ -49,7 +51,8 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <version>1.4.200</version>
+            <!--            <scope>compile</scope>-->
         </dependency>
 
         <!--金额相关操作-->
@@ -66,11 +69,11 @@
             <version>7.0.0.CR1</version>
         </dependency>
 
-<!--        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.3.1</version>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>com.github.pagehelper</groupId>
+                    <artifactId>pagehelper-spring-boot-starter</artifactId>
+                    <version>1.3.1</version>
+                </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,6 +83,13 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+            <!--            <scope>runtime</scope>-->
         </dependency>
     </dependencies>
 
@@ -92,7 +102,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.1.0</version>
             </plugin>
             <!-- 通过插件的方式运行generator，generator的运行有多种方式，包括命令行、java程序、maven插件的方式
             通过maven插件的方式运行如下：
@@ -100,11 +110,35 @@
             2.非覆盖式，如果存在同名文件，不会覆盖，会生产唯一名字，这种方式其实不太保险。mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
             暂时未实现
             -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.4.0</version>
-            </plugin>-->
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.26</version>
+                    </dependency>
+                    <!--<dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.200</version>
+                    </dependency>-->
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 
